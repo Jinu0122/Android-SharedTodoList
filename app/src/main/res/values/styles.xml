@@ -1,0 +1,30 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="MyTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#3F51B5</item>
+        <item name="colorPrimaryDark">#03A9F4</item>
+        <item name="colorAccent">#464646</item>
+
+        <!-- enable window content transitions -->
+        <!--        <item name="android:windowActivityTransitions">true</item>-->
+
+        <!--        &lt;!&ndash;custom font-family 적용&ndash;&gt;-->
+        <!--        <item name="android:textViewStyle">@style/customTextViewFontStyle</item>-->
+        <!--        <item name="android:buttonStyle">@style/customButtonFontStyle</item>-->
+        <!--        <item name="android:editTextStyle">@style/customEditTextFontStyle</item>-->
+        <!--        <item name="android:radioButtonStyle">@style/customRadioButtonFontStyle</item>-->
+        <!--        <item name="android:checkboxStyle">@style/customCheckboxFontStyle</item>-->
+
+    </style>
+
+
+
+</resources>
