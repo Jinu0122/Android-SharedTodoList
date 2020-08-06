@@ -3,6 +3,7 @@ package com.jnu.sharedtodolist
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -98,6 +99,45 @@ class MainActivity : AppCompatActivity(), TodoRecyclerviewInterface {
 
         // 변경된 배열을 저장한다.
         SharedManager.storeTodoList(this.myTodoList)
+
+    }
+    // 리사이클러뷰 인터페이스 아이템 삭제 버튼 클릭
+    override fun onTodoItemDeleted(position: Int) {
+
+        Log.d(TAG,"MainActivity - onTodoItemDeleted() called / position: $position" )
+        Log.d(TAG,"MainActivity - onTodoItemDeleted() called / 삭제 되었다 " )
+
+        myTodoList.removeAt(position)
+
+        SharedManager.storeTodoList(this.myTodoList)
+
+        // 저장된 목록 가져오기
+        // myTodoList 는 ArrayList 이고 getTodoList은  MutableList 이기때문에 형변환해줘야함
+        myTodoList = SharedManager.getTodoList() as ArrayList<Todo>
+
+
+        // 리사이클러뷰 어답터 준비
+        todoListRecyclerViewAdapter = TodoListRecyclerViewAdapter(this)
+
+//        todoListRecyclerViewAdapter.submitTodoList(myTodoList)
+        // 밑에와 같은의미이다 아래로쓸꺼면 어뎁터의 서브밋 함수를 만들지 않아도 된다.
+        // 기관총에 장전함
+        todoListRecyclerViewAdapter.todoList = myTodoList
+
+        // 데이터를 맨위부터 채운다.
+        val linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true)
+
+        linearLayoutManager.stackFromEnd = true
+
+        todo_list_recycler_view.apply {
+            adapter = todoListRecyclerViewAdapter
+            layoutManager = linearLayoutManager
+            // 맨처음 실행했을때 제일 최신 목록이 제일 위로 쫙 올라오게 한다.
+            this.scrollToPosition(todoListRecyclerViewAdapter.itemCount -1)
+        }
+//        todo_list_recycler_view.adapter = todoListRecyclerViewAdapter
+//        todo_list_recycler_view.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        // 위에거랑 같은거다.
 
     }
 }

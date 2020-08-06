@@ -12,11 +12,11 @@ import kotlinx.android.synthetic.main.layout_todo_item.view.*
 class TodoItemViewHolder(itemView: View, todoRecyclerviewInterface: TodoRecyclerviewInterface) : RecyclerView.ViewHolder(itemView),
     View.OnLongClickListener,View.OnClickListener,CompoundButton.OnCheckedChangeListener {
 
-    companion object{
+    companion object {
         const val TAG: String = "로그"
     }
 
-    private var todoRecyclerviewInterface : TodoRecyclerviewInterface
+    private var todoRecyclerviewInterface: TodoRecyclerviewInterface
 
     init {
         itemView.delete_todo_btn.setOnClickListener(this)
@@ -32,30 +32,31 @@ class TodoItemViewHolder(itemView: View, todoRecyclerviewInterface: TodoRecycler
 
 
     // 뷰와 데이터 연결
-    fun bindWithView(todo: Todo){
+    fun bindWithView(todo: Todo) {
 
         itemTodoText.text = todo.content
         itemCheckBox.isChecked = todo.isDone
 
-
-        if(todo.isDone){
+        // 아이템이 체크 되었을 때
+        if (todo.isDone) {
             itemTodoText.paintFlags = itemTodoText.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-        }
 
+        }
     }
 
     override fun onCheckedChanged(checkBox: CompoundButton?, isChecked: Boolean) {
-        Log.d(TAG,"TodoItemViewHolder - onCheckedChanged() called ")
+        Log.d(TAG, "TodoItemViewHolder - onCheckedChanged() called ")
 
-        if(checkBox == itemCheckBox){
-            Log.d(TAG,"TodoItemViewHolder - isChecked : $isChecked")
+        if (checkBox == itemCheckBox) {
+            Log.d(TAG, "TodoItemViewHolder - isChecked : $isChecked")
 
             // 인터페이스를 통해서 즉 액티비티에 어떤 녀석이 변경되었는지 알려준다.
             this.todoRecyclerviewInterface.onTodoItemChanged(adapterPosition, isChecked)
 
-            if(isChecked == true){
+
+            if (isChecked == true) {
                 itemTodoText.paintFlags = itemTodoText.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-            } else{
+            } else {
                 itemTodoText.paintFlags = 0
             }
 
@@ -73,9 +74,22 @@ class TodoItemViewHolder(itemView: View, todoRecyclerviewInterface: TodoRecycler
         return true
     }
 
+
+
     override fun onClick(view: View?) {
-        Log.d(TAG,"TodoItemViewHolder - onClick() called")
+
+        Log.d(TAG, "TodoItemViewHolder - onClick() called / 삭제버튼이 클릭 되었다.")
+        when(view){
+            itemDeleteBtn -> {
+                // 리모콘 발동
+                this.todoRecyclerviewInterface.onTodoItemDeleted(adapterPosition)
+            }
+        }
+
     }
+
+
+
 
 
 }
