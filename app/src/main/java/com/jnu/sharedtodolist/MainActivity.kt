@@ -27,12 +27,6 @@ class MainActivity : AppCompatActivity(), TodoRecyclerviewInterface {
         add_todo_btn.setOnClickListener {
             Log.d(TAG,"MainActivity - 할일 추가 버튼 클릭")
 
-//            if(new_todo_edit_text.text.isEmpty()){
-//
-//
-//            }
-
-
             val newTodoContentText = new_todo_edit_text.text.toString()
 
             val newTodo = Todo(newTodoContentText)
@@ -104,14 +98,17 @@ class MainActivity : AppCompatActivity(), TodoRecyclerviewInterface {
     // 리사이클러뷰 인터페이스 아이템 삭제 버튼 클릭
     override fun onTodoItemDeleted(position: Int) {
 
-        Log.d(TAG,"MainActivity - onTodoItemDeleted() called / position: $position" )
-        Log.d(TAG,"MainActivity - onTodoItemDeleted() called / 삭제 되었다 " )
+        Log.d(TAG,"MainActivity - onTodoItemDeleted() called / 삭제되었다. / position: $position" )
 
+        //  해당 포지션의 배열을 삭제한다
         myTodoList.removeAt(position)
 
+        // 삭제된 값을 저장한다.
         SharedManager.storeTodoList(this.myTodoList)
 
-        // 저장된 목록 가져오기
+
+
+        // 삭제된후 목록을 다시 뿌려주기위해 저장된 목록 가져온다.
         // myTodoList 는 ArrayList 이고 getTodoList은  MutableList 이기때문에 형변환해줘야함
         myTodoList = SharedManager.getTodoList() as ArrayList<Todo>
 

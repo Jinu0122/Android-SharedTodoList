@@ -31,12 +31,13 @@
             android:maxLines="1"
             android:layout_gravity="center_vertical"
             />
+
         <ImageView
             android:id="@+id/delete_todo_btn"
-            android:visibility="invisible"
-            android:src="@drawable/ic_delete_forever_red_24dp"
             android:layout_width="30dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_delete_forever_red_24dp"
+            android:visibility="gone"
 
             />
     </LinearLayout>

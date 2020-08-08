@@ -40,7 +40,10 @@ class TodoItemViewHolder(itemView: View, todoRecyclerviewInterface: TodoRecycler
         // 아이템이 체크 되었을 때
         if (todo.isDone) {
             itemTodoText.paintFlags = itemTodoText.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-
+            itemDeleteBtn.visibility = View.VISIBLE
+        }
+        else{
+            itemDeleteBtn.visibility = View.GONE
         }
     }
 

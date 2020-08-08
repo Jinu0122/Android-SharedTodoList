@@ -2,6 +2,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+//구글서비
+apply plugin: 'com.google.gms.google-services'
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.0"
@@ -40,5 +43,10 @@ dependencies {
 
     // 메테리얼
     implementation 'com.google.android.material:material:1.1.0'
+
+    // 파이어베이스
+    implementation 'com.google.firebase:firebase-analytics:17.4.4'
+    implementation 'com.google.firebase:firebase-core:17.4.4'
+    implementation 'com.google.firebase:firebase-database:19.3.1'
 
 }
